@@ -11,12 +11,13 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 <Base title={`${entry.data.title} | Freelancer Stack`} description={entry.data.description}>
-  <article>
+  <article class="narrow">
+    <span class="eyebrow">Guide</span>
     <h1>{entry.data.title}</h1>
     <p class="disclosure">
       Disclosure: some links below are affiliate links. We may earn a commission if you buy through them, at no extra cost to you.
       It does not change what we recommend. <a href="/disclosure/">Details</a>.
     </p>
-    <Content />
+    <div class="prose"><Content /></div>
   </article>
 </Base>

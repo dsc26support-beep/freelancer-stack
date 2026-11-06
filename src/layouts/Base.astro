@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title: string;
   description?: string;
@@ -12,38 +14,44 @@ const { title, description = 'Honest software comparisons for freelancers.' } = 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
-    <style>
-      :root { --ink:#1b1f24; --muted:#5b6570; --line:#e3e7eb; --accent:#1f5eff; --bg:#fff; --soft:#f6f8fa; }
-      * { box-sizing: border-box; }
-      body { margin:0; font:17px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:var(--ink); background:var(--bg); }
-      header, main, footer { max-width: 720px; margin: 0 auto; padding: 1rem 1.25rem; }
-      header { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); }
-      header a.brand { font-weight:700; color:var(--ink); text-decoration:none; }
-      nav a { margin-left:1rem; color:var(--muted); text-decoration:none; }
-      a { color: var(--accent); }
-      h1 { line-height:1.2; }
-      table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
-      th, td { border:1px solid var(--line); padding:.5rem .6rem; text-align:left; vertical-align:top; }
-      th { background:var(--soft); }
-      .disclosure { background:var(--soft); border-left:4px solid var(--accent); padding:.75rem 1rem; font-size:.92rem; color:var(--muted); margin:1rem 0; }
-      footer { border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
-      footer a { color: var(--muted); margin-right:1rem; }
-    </style>
   </head>
   <body>
-    <header>
-      <a class="brand" href="/">Freelancer Stack</a>
-      <nav>
-        <a href="/articles/">Articles</a>
-        <a href="/about/">About</a>
-      </nav>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/"><span class="brand-mark">F</span>Freelancer Stack</a>
+        <nav class="site-nav" aria-label="Main">
+          <a href="/">Home</a>
+          <a href="/articles/">Articles</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </div>
     </header>
-    <main><slot /></main>
-    <footer>
-      <a href="/disclosure/">Affiliate disclosure</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="/contact/">Contact</a>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div>
+          <h4>Freelancer Stack</h4>
+          <p>Plain-spoken software picks for people who work for themselves.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <a href="/articles/">Articles</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+        </div>
+        <div>
+          <h4>Trust</h4>
+          <a href="/disclosure/">Affiliate disclosure</a>
+          <a href="/privacy/">Privacy</a>
+        </div>
+      </div>
+      <div class="wrap"><small>Some links are affiliate links. We may earn a commission at no extra cost to you.</small></div>
     </footer>
   </body>
 </html>
