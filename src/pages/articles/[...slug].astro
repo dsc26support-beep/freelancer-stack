@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => !data.draft);
+  return articles.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<Base title={`${entry.data.title} | Freelancer Stack`} description={entry.data.description}>
+  <article>
+    <h1>{entry.data.title}</h1>
+    <p class="disclosure">
+      Disclosure: some links below are affiliate links. We may earn a commission if you buy through them, at no extra cost to you.
+      It does not change what we recommend. <a href="/disclosure/">Details</a>.
+    </p>
+    <Content />
+  </article>
+</Base>

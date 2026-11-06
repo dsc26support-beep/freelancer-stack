@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Base title="Freelancer Stack: honest software picks for freelancers">
+  <h1>Software picks for freelancers, without the hype</h1>
+  <p>Invoicing, contracts, time tracking and scheduling tools, compared plainly. We say who each tool suits and who should skip it.</p>
+  <p class="disclosure">Some links on this site are affiliate links. If you buy through them we may earn a commission at no extra cost to you. <a href="/disclosure/">Read more</a>.</p>
+
+  <h2>Latest articles</h2>
+  {articles.length === 0
+    ? <p>The first articles are being written. Check back soon.</p>
+    : <ul>{articles.map((a) => (
+        <li><a href={`/articles/${a.id}/`}>{a.data.title}</a></li>
+      ))}</ul>}
+</Base>
