@@ -22,7 +22,7 @@ Terms change without notice. **Confirm every number on the program's own page af
 
 1. Every article has a disclosure at the top and `rel="sponsored"` on affiliate links.
 2. No claim about price, features, or earnings unless it is checked against the vendor's own page on the date of writing.
-3. No "I tested this" wording unless the author actually did. Draft articles stay `draft: true` until the author adds first-hand notes.
+3. No "I tested this" wording unless the author actually did. Research-based guides may be published if they say so in "How we checked"; add first-hand notes later to strengthen them. Full writing rules: [WRITING.md](WRITING.md).
 4. Say who each tool is *not* for.
 5. Do not promise income. Do not fake urgency.
 
