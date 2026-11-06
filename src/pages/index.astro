@@ -1,132 +1,146 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import { getCollection } from 'astro:content';
 
-const articles = (await getCollection('articles', ({ data }) => !data.draft))
+const published = (await getCollection('articles', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const featured = articles.slice(0, 3);
 
-const topics = [
-  { icon: '🧾', name: 'Invoicing', text: 'Get paid on time without chasing. Invoices, deposits and reminders.' },
-  { icon: '📝', name: 'Contracts & CRM', text: 'Proposals, contracts and client tracking in one place.' },
-  { icon: '⏱️', name: 'Time tracking', text: 'Track billable hours and see where your week really goes.' },
-  { icon: '📅', name: 'Scheduling', text: 'Let clients book calls without the email back-and-forth.' },
+const planned = [
+  { title: 'Best invoicing software for freelance designers', text: 'Retainers, deposits and overseas clients: what actually matters.' },
+  { title: 'FreshBooks vs HoneyBook for freelancers', text: 'Accounting-first or client-workflow-first? Who each one suits.' },
+  { title: 'Best time-tracking apps for freelancers', text: 'Track billable hours without turning your day into admin.' },
 ];
 
-const inProgress = [
-  'Best invoicing software for freelance designers',
-  'FreshBooks vs HoneyBook for freelancers',
-  'Best time-tracking apps for freelancers',
-];
+const guides = published.length > 0
+  ? published.slice(0, 3).map((a) => ({ title: a.data.title, text: a.data.description, href: `/articles/${a.id}/`, live: true }))
+  : planned.map((p) => ({ ...p, href: null, live: false }));
 
-const principles = [
-  { title: 'We say who it is not for', text: 'Every pick comes with the people who should skip it.' },
-  { title: 'We check facts at the source', text: 'Prices and features come from the vendor\'s own page, with the date we checked.' },
-  { title: 'We are open about money', text: 'Some links pay us a commission. It never changes what we recommend.' },
-];
+const marquee = ['Invoicing', 'Contracts', 'Client CRM', 'Time tracking', 'Scheduling', 'Proposals', 'Payments', 'Project management'];
 ---
 <Base title="Freelancer Stack: honest software picks for freelancers">
-  <section class="hero">
-    <div class="wrap">
+  <!-- HERO -->
+  <section class="hero dark">
+    <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">Honest software picks</span>
-        <h1>The right tools for your freelance business, without the hype.</h1>
-        <p class="lede">Invoicing, contracts, time tracking and scheduling tools, compared in plain language. We tell you who each one suits and who should skip it.</p>
+        <span class="chip">Honest software picks</span>
+        <h1>Build a freelance stack <span class="hl">that pays.</span></h1>
+        <p class="lede">Invoicing, contracts, time tracking and scheduling tools, compared in plain language. Who each one suits, who should skip it, and what it really costs.</p>
         <div class="hero-actions">
-          <a class="btn" href="#topics">Browse topics</a>
-          <a class="btn ghost" href="#how-we-choose">How we choose</a>
+          <a class="btn" href="#topics">Explore the stack <span class="arrow">↓</span></a>
+          <a class="btn line" href="#how">How we choose</a>
         </div>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="hero-card one"><b>Invoicing</b><span>Get paid faster</span></div>
-        <div class="hero-card two"><b>Contracts</b><span>Win clients with confidence</span></div>
-        <div class="hero-card three"><b>Time tracking</b><span>Bill every hour</span></div>
+
+      <div class="stack-panel" aria-label="The four layers of a freelance stack">
+        <header><b>Your freelance stack</b><span>4 layers</span></header>
+        <div class="stack-row"><span class="ico"><Icon name="contract" /></span><div><strong>Win the client</strong><small>Proposals &amp; contracts</small></div><span class="bar"><i style="width:80%"></i></span></div>
+        <div class="stack-row"><span class="ico"><Icon name="calendar" /></span><div><strong>Book the work</strong><small>Scheduling</small></div><span class="bar"><i style="width:60%"></i></span></div>
+        <div class="stack-row"><span class="ico"><Icon name="clock" /></span><div><strong>Track the hours</strong><small>Time tracking</small></div><span class="bar"><i style="width:70%"></i></span></div>
+        <div class="stack-row"><span class="ico"><Icon name="invoice" /></span><div><strong>Get paid</strong><small>Invoicing &amp; payments</small></div><span class="bar"><i style="width:95%"></i></span></div>
       </div>
     </div>
   </section>
 
+  <div class="marquee dark" aria-hidden="true">
+    <div class="marquee-track">
+      {[0, 1].map(() => marquee.map((m) => <span>{m}</span>))}
+    </div>
+  </div>
+
+  <!-- TOPICS BENTO -->
   <section class="section" id="topics">
     <div class="wrap">
       <div class="section-head">
-        <h2>What we cover</h2>
-        <p>Four areas where the right tool saves a freelancer real time.</p>
+        <h2>Four layers. One working business.</h2>
+        <p class="muted">Most freelancers need the same four jobs done. We compare the tools for each, so you pay only for what you use.</p>
       </div>
-      <div class="grid cols-4">
-        {topics.map((t) => (
-          <div class="card">
-            <div class="icon">{t.icon}</div>
-            <h3>{t.name}</h3>
-            <p>{t.text}</p>
-          </div>
-        ))}
+      <div class="bento">
+        <div class="tile ink wide tall">
+          <span class="num">01 / Get paid</span>
+          <span class="ico"><Icon name="invoice" /></span>
+          <h3>Invoicing that chases payments for you</h3>
+          <p>Recurring invoices for retainers, deposits for projects, reminders that go out on time, and fees that don't eat your margin.</p>
+          <span class="ring"></span>
+        </div>
+        <div class="tile volt">
+          <span class="num">02 / Win</span>
+          <span class="ico"><Icon name="contract" /></span>
+          <h3>Contracts &amp; CRM</h3>
+          <p>Proposals, e-signatures and client tracking.</p>
+        </div>
+        <div class="tile">
+          <span class="num">03 / Track</span>
+          <span class="ico"><Icon name="clock" /></span>
+          <h3>Time tracking</h3>
+          <p>See where your week actually goes.</p>
+        </div>
+        <div class="tile wide">
+          <span class="num">04 / Book</span>
+          <span class="ico"><Icon name="calendar" /></span>
+          <h3>Scheduling without the email ping-pong</h3>
+          <p>Let clients pick a slot that already fits your time zone and your calendar.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section tint">
+  <!-- GUIDES -->
+  <section class="section dark">
     <div class="wrap">
       <div class="section-head">
-        <h2>{featured.length > 0 ? 'Featured guides' : 'Guides in progress'}</h2>
-        <p>{featured.length > 0 ? 'Start here.' : 'We publish a guide only once the facts are checked and we have used the tools. These are next.'}</p>
+        <h2>{published.length > 0 ? 'Latest guides' : 'Guides on the way'}</h2>
+        <p class="muted">{published.length > 0 ? 'Start with these.' : 'We publish a guide only after the facts are checked at the source and we have used the tools ourselves. These are next.'}</p>
       </div>
-      <div class="grid cols-3">
-        {featured.length > 0
-          ? featured.map((a) => (
-              <div class="card">
-                <h3>{a.data.title}</h3>
-                <p>{a.data.description}</p>
-                <a class="card-link" href={`/articles/${a.id}/`}>Read the guide →</a>
-              </div>
-            ))
-          : inProgress.map((title) => (
-              <div class="card">
-                <span class="tag">Coming soon</span>
-                <h3>{title}</h3>
-              </div>
-            ))}
+      <div class="cards">
+        {guides.map((g) =>
+          g.href ? (
+            <a class="guide" href={g.href}>
+              <div class="top"><span class="status live">Guide</span><span class="go"><Icon name="arrow" /></span></div>
+              <h3>{g.title}</h3>
+              <p>{g.text}</p>
+            </a>
+          ) : (
+            <div class="guide">
+              <div class="top"><span class="status">In progress</span></div>
+              <h3>{g.title}</h3>
+              <p>{g.text}</p>
+            </div>
+          )
+        )}
       </div>
+      {published.length > 0 && <p style="margin-top:1.6rem"><a class="btn line" href="/articles/">All guides</a></p>}
     </div>
   </section>
 
-  {articles.length > 0 && (
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head"><h2>Latest articles</h2></div>
-        <ul class="post-list">
-          {articles.map((a) => (
-            <li>
-              <a href={`/articles/${a.id}/`}>{a.data.title}</a>
-              <small>{a.data.description}</small>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )}
-
-  <section class="section" id="how-we-choose">
+  <!-- HOW WE CHOOSE -->
+  <section class="section" id="how">
     <div class="wrap">
       <div class="section-head">
-        <h2>How we choose</h2>
-        <p>Three rules we hold ourselves to.</p>
+        <h2>How we choose.</h2>
+        <p class="muted">Three rules every guide has to pass before it goes live.</p>
       </div>
-      <div class="grid cols-3 principles">
-        {principles.map((p) => (
-          <div class="card">
-            <h3>{p.title}</h3>
-            <p>{p.text}</p>
-          </div>
-        ))}
+      <div class="steps">
+        <div class="step"><h3>We say who should skip it</h3><p>Every pick names the people it's wrong for. A tool that suits everyone suits no one.</p></div>
+        <div class="step"><h3>We check facts at the source</h3><p>Prices and features come from the vendor's own page, with the date we checked them.</p></div>
+        <div class="step"><h3>We're open about money</h3><p>Some links pay us a commission. It never decides the ranking, and every link is labelled.</p></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>4</b><span>tool categories covered</span></div>
+        <div class="fact"><b>0</b><span>paid placements</span></div>
+        <div class="fact"><b>100%</b><span>affiliate links disclosed</span></div>
+        <div class="fact"><b>1</b><span>question per guide: who is it for?</span></div>
       </div>
     </div>
   </section>
 
-  <section class="cta">
+  <!-- CTA -->
+  <section class="section" style="padding-top:0">
     <div class="wrap">
-      <div class="box">
-        <h2>Have a tool you want compared?</h2>
-        <p>Tell us what you are trying to pick and we will consider it for a future guide.</p>
-        <a class="btn" href="/contact/">Get in touch</a>
+      <div class="cta-box">
+        <h2>Stuck choosing a tool?</h2>
+        <p>Tell us what you're trying to pick. The most-asked comparisons become our next guides.</p>
+        <a class="btn" href="/contact/">Suggest a comparison <span class="arrow">→</span></a>
       </div>
     </div>
   </section>
