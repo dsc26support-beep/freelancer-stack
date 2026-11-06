@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
-// Replace with your real domain once you have one.
+// Update again if you add a custom domain.
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://freelance-stack.netlify.app',
 });
