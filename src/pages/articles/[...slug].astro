@@ -13,7 +13,7 @@ const { Content } = await render(entry);
 const updated = entry.data.updatedDate ?? entry.data.pubDate;
 const dateText = updated.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
-<Base title={`${entry.data.title} | Freelancer Stack`} description={entry.data.description}>
+<Base title={`${entry.data.title} | Freelance Stack`} description={entry.data.description}>
   <PageHero label={`Guide · Updated ${dateText}`} title={entry.data.title} lede={entry.data.description} />
   <section class="page-body">
     <div class="wrap">

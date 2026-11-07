@@ -1,6 +1,6 @@
 ---
 import '@fontsource-variable/inter';
-import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/plus-jakarta-sans';
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
 
@@ -23,26 +23,27 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#0a0d0c" />
+    <meta name="theme-color" content="#050806" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <link rel="canonical" href={new URL(path, Astro.site)} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/brand/favicon-64.png" type="image/png" sizes="64x64" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
   </head>
   <body>
     <header class="site-header" id="top">
       <div class="wrap">
-        <a class="brand" href="/" aria-label="Freelancer Stack home">
-          <span class="brand-mark"><Icon name="layers" /></span>
-          Freelancer Stack
+        <a class="brand" href="/" aria-label="Freelance Stack home">
+          <img class="brand-logo" src="/brand/logo-mark.png" alt="" width="92" height="96" />
+          <span>Freelance <span class="hl">Stack</span></span>
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span></button>
         <nav class="site-nav" id="site-nav" aria-label="Main">
           {links.map((l) => <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>)}
-          <a class="btn" href="/contact/">Contact</a>
+          <a class="btn" href="/contact/">Contact <Icon name="arrow-right" /></a>
         </nav>
       </div>
     </header>
@@ -53,7 +54,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
       <div class="wrap">
         <div class="foot-grid">
           <div>
-            <a class="brand" href="/"><span class="brand-mark"><Icon name="layers" /></span>Freelancer Stack</a>
+            <a class="brand" href="/"><img class="brand-logo" src="/brand/logo-mark.png" alt="" width="92" height="96" /><span>Freelance <span class="hl">Stack</span></span></a>
             <p class="muted" style="margin-top:1rem;max-width:26rem">Plain-spoken software picks for people who work for themselves. We say who each tool suits, and who should skip it.</p>
           </div>
           <div>
@@ -72,7 +73,8 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
             </nav>
           </div>
         </div>
-        <div class="wordmark" aria-hidden="true">Freelancer<br />Stack</div>
+        <div class="wordmark" aria-hidden="true">Freelance <span>Stack</span></div>
+        <p class="tagline" aria-hidden="true">Work <i></i> Track <i></i> Get paid</p>
         <div class="foot-bottom">
           <span>Some links are affiliate links. We may earn a commission at no extra cost to you.</span>
           <a href="#top" style="text-decoration:none">Back to top ↑</a>

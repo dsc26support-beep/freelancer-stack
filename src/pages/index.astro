@@ -18,26 +18,79 @@ const guides = published.length > 0
 
 const marquee = ['Invoicing', 'Contracts', 'Client CRM', 'Time tracking', 'Scheduling', 'Proposals', 'Payments', 'Project management'];
 ---
-<Base title="Freelancer Stack: honest software picks for freelancers">
+<Base title="Freelance Stack: honest software picks for freelancers">
   <!-- HERO -->
-  <section class="hero dark">
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <img class="hero-palms" src="/brand/palms.jpg" alt="" width="205" height="330" />
+      <div class="hero-dots"></div>
+      <svg class="hero-waves" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="hw-lime" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#9ef01a" />
+            <stop offset="0.55" stop-color="#d4ff3a" />
+            <stop offset="1" stop-color="#7ee81a" />
+          </linearGradient>
+          <linearGradient id="hw-deep" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#14360d" />
+            <stop offset="1" stop-color="#050806" />
+          </linearGradient>
+          <linearGradient id="hw-band" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#b6f526" />
+            <stop offset="1" stop-color="#3fa514" />
+          </linearGradient>
+          <filter id="hw-glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="14" /></filter>
+        </defs>
+        <path d="M0 520 C 280 450 560 640 900 600 C 1150 570 1320 470 1440 380 L1440 640 L0 640 Z" fill="url(#hw-deep)" />
+        <path d="M-40 505 C 260 430 560 620 900 585 C 1150 560 1330 440 1480 330" fill="none" stroke="url(#hw-lime)" stroke-width="26" opacity="0.45" filter="url(#hw-glow)" />
+        <path d="M-40 505 C 260 430 560 620 900 585 C 1150 560 1330 440 1480 330" fill="none" stroke="url(#hw-lime)" stroke-width="7" stroke-linecap="round" />
+        <path d="M-40 560 C 240 500 540 660 880 640" fill="none" stroke="#c8f135" stroke-width="2" opacity="0.35" />
+        <path d="M0 548 C 120 536 250 560 370 605 C 420 622 460 634 490 640 L0 640 Z" fill="url(#hw-band)" opacity="0.92" />
+        <path d="M0 560 C 150 548 280 575 390 622" fill="none" stroke="#eaff8a" stroke-width="2" opacity="0.6" />
+      </svg>
+    </div>
+
     <div class="wrap hero-grid">
-      <div>
+      <div class="hero-copy">
         <span class="chip">Honest software picks</span>
-        <h1>Build a freelance stack <span class="hl">that pays.</span></h1>
+        <h1>
+          <span class="h-line">Build a</span>
+          <span class="h-line hl">freelance stack</span>
+          <span class="h-line">that <span class="swoosh">pays<svg viewBox="0 0 200 22" preserveAspectRatio="none" aria-hidden="true"><path d="M3 15 C 50 5 130 3 197 11" /></svg></span><span class="hl">.</span></span>
+        </h1>
         <p class="lede">Invoicing, contracts, time tracking and scheduling tools, compared in plain language. Who each one suits, who should skip it, and what it really costs.</p>
         <div class="hero-actions">
-          <a class="btn" href="#topics">Explore the stack <span class="arrow">↓</span></a>
-          <a class="btn line" href="#how">How we choose</a>
+          <a class="btn" href="#topics">Explore the stack <Icon name="arrow-down-circle" /></a>
+          <a class="btn line" href="#how"><Icon name="shield" /> How we choose</a>
         </div>
       </div>
 
-      <div class="stack-panel" aria-label="The four layers of a freelance stack">
-        <header><b>Your freelance stack</b><span>4 layers</span></header>
-        <div class="stack-row"><span class="ico"><Icon name="contract" /></span><div><strong>Win the client</strong><small>Proposals &amp; contracts</small></div><span class="bar"><i style="width:80%"></i></span></div>
-        <div class="stack-row"><span class="ico"><Icon name="calendar" /></span><div><strong>Book the work</strong><small>Scheduling</small></div><span class="bar"><i style="width:60%"></i></span></div>
-        <div class="stack-row"><span class="ico"><Icon name="clock" /></span><div><strong>Track the hours</strong><small>Time tracking</small></div><span class="bar"><i style="width:70%"></i></span></div>
-        <div class="stack-row"><span class="ico"><Icon name="invoice" /></span><div><strong>Get paid</strong><small>Invoicing &amp; payments</small></div><span class="bar"><i style="width:95%"></i></span></div>
+      <div class="hero-visual">
+        <svg class="hero-arrow" viewBox="0 0 300 300" aria-hidden="true">
+          <defs>
+            <linearGradient id="ha-grad" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="#4fbf16" />
+              <stop offset="1" stop-color="#d9ff4a" />
+            </linearGradient>
+            <filter id="ha-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10" /></filter>
+          </defs>
+          <g opacity="0.55" filter="url(#ha-glow)">
+            <path d="M10 280 C 110 260 190 190 245 70" fill="none" stroke="url(#ha-grad)" stroke-width="34" stroke-linecap="round" />
+          </g>
+          <path d="M10 280 C 110 260 190 190 245 70" fill="none" stroke="url(#ha-grad)" stroke-width="22" stroke-linecap="round" />
+          <path d="M210 78 L268 18 L282 100 Z" fill="#d9ff4a" />
+        </svg>
+
+        <div class="stack-card" aria-label="The four layers of a freelance stack">
+          <div class="stack-card-head">
+            <img src="/brand/logo-mark.png" alt="" width="92" height="96" />
+            <span>Freelance <span class="hl">Stack</span></span>
+          </div>
+          <div class="stack-row"><span class="ico"><Icon name="contract" /></span><div><strong>Win the client</strong><small>Proposals &amp; contracts</small></div><span class="bar"><i style="width:82%"></i></span></div>
+          <div class="stack-row"><span class="ico"><Icon name="calendar" /></span><div><strong>Book the work</strong><small>Scheduling</small></div><span class="bar"><i style="width:68%"></i></span></div>
+          <div class="stack-row"><span class="ico"><Icon name="clock" /></span><div><strong>Track the hours</strong><small>Time tracking</small></div><span class="bar"><i style="width:72%"></i></span></div>
+          <div class="stack-row"><span class="ico"><Icon name="card" /></span><div><strong>Get paid</strong><small>Invoicing &amp; payments</small></div><span class="bar"><i style="width:70%"></i></span></div>
+        </div>
       </div>
     </div>
   </section>
