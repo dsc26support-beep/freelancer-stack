@@ -8,6 +8,8 @@ const articles = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
+    // The tools a guide compares, shown in the guides index.
+    compares: z.array(z.string()).optional(),
     // Drafts are not published until first-hand notes and verified facts are added.
     draft: z.boolean().default(true),
   }),

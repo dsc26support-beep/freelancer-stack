@@ -1,199 +1,111 @@
 ---
 import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
 import { getCollection } from 'astro:content';
 
 const published = (await getCollection('articles', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const planned = [
-  { title: 'Best invoicing software for freelance designers', text: 'Retainers, deposits and overseas clients: what actually matters.' },
-  { title: 'FreshBooks vs HoneyBook for freelancers', text: 'Accounting-first or client-workflow-first? Who each one suits.' },
-  { title: 'Best time-tracking apps for freelancers', text: 'Track billable hours without turning your day into admin.' },
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const layers = [
+  { name: 'Win the client', line: 'Proposals, e-signatures and client tracking.' },
+  { name: 'Book the work', line: 'Scheduling without the email ping-pong.' },
+  { name: 'Track the hours', line: 'See where your week actually goes.' },
+  { name: 'Get paid', line: 'Invoicing that chases payments for you.' },
 ];
-
-const guides = published.length > 0
-  ? published.slice(0, 3).map((a) => ({ title: a.data.title, text: a.data.description, href: `/articles/${a.id}/`, live: true }))
-  : planned.map((p) => ({ ...p, href: null, live: false }));
-
-const marquee = ['Invoicing', 'Contracts', 'Client CRM', 'Time tracking', 'Scheduling', 'Proposals', 'Payments', 'Project management'];
 ---
 <Base title="Freelance Stack: honest software picks for freelancers">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <img class="hero-palms" src="/brand/palms.jpg" alt="" width="205" height="330" />
-      <div class="hero-dots"></div>
-      <svg class="hero-waves" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMax slice">
-        <defs>
-          <linearGradient id="hw-lime" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stop-color="#9ef01a" />
-            <stop offset="0.55" stop-color="#d4ff3a" />
-            <stop offset="1" stop-color="#7ee81a" />
-          </linearGradient>
-          <linearGradient id="hw-deep" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0" stop-color="#14360d" />
-            <stop offset="1" stop-color="#050806" />
-          </linearGradient>
-          <linearGradient id="hw-band" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0" stop-color="#b6f526" />
-            <stop offset="1" stop-color="#3fa514" />
-          </linearGradient>
-          <filter id="hw-glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="14" /></filter>
-        </defs>
-        <path d="M0 520 C 280 450 560 640 900 600 C 1150 570 1320 470 1440 380 L1440 640 L0 640 Z" fill="url(#hw-deep)" />
-        <path d="M-40 505 C 260 430 560 620 900 585 C 1150 560 1330 440 1480 330" fill="none" stroke="url(#hw-lime)" stroke-width="26" opacity="0.45" filter="url(#hw-glow)" />
-        <path d="M-40 505 C 260 430 560 620 900 585 C 1150 560 1330 440 1480 330" fill="none" stroke="url(#hw-lime)" stroke-width="7" stroke-linecap="round" />
-        <path d="M-40 560 C 240 500 540 660 880 640" fill="none" stroke="#c8f135" stroke-width="2" opacity="0.35" />
-        <path d="M0 548 C 120 536 250 560 370 605 C 420 622 460 634 490 640 L0 640 Z" fill="url(#hw-band)" opacity="0.92" />
-        <path d="M0 560 C 150 548 280 575 390 622" fill="none" stroke="#eaff8a" stroke-width="2" opacity="0.6" />
-      </svg>
-    </div>
-
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <span class="chip">Honest software picks</span>
-        <h1>
-          <span class="h-line">Build a</span>
-          <span class="h-line hl">freelance stack</span>
-          <span class="h-line">that <span class="swoosh">pays<svg viewBox="0 0 200 22" preserveAspectRatio="none" aria-hidden="true"><path d="M3 15 C 50 5 130 3 197 11" /></svg></span><span class="hl">.</span></span>
-        </h1>
-        <p class="lede">Invoicing, contracts, time tracking and scheduling tools, compared in plain language. Who each one suits, who should skip it, and what it really costs.</p>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div>
+        <h1 id="hero-title">Build a freelance stack that pays.</h1>
+        <p class="lead">Invoicing, contract, time and scheduling tools: who each suits, what it costs.</p>
         <div class="hero-actions">
-          <a class="btn" href="#topics">Explore the stack <Icon name="arrow-down-circle" /></a>
-          <a class="btn line" href="#how"><Icon name="shield" /> How we choose</a>
+          <a class="btn" href="#topics">Explore the stack</a>
+          <a class="btn btn--quiet" href="#how">How we choose</a>
         </div>
       </div>
 
-      <div class="hero-visual">
-        <svg class="hero-arrow" viewBox="0 0 300 300" aria-hidden="true">
-          <defs>
-            <linearGradient id="ha-grad" x1="0" x2="1" y1="1" y2="0">
-              <stop offset="0" stop-color="#4fbf16" />
-              <stop offset="1" stop-color="#d9ff4a" />
-            </linearGradient>
-            <filter id="ha-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10" /></filter>
-          </defs>
-          <g opacity="0.55" filter="url(#ha-glow)">
-            <path d="M10 280 C 110 260 190 190 245 70" fill="none" stroke="url(#ha-grad)" stroke-width="34" stroke-linecap="round" />
-          </g>
-          <path d="M10 280 C 110 260 190 190 245 70" fill="none" stroke="url(#ha-grad)" stroke-width="22" stroke-linecap="round" />
-          <path d="M210 78 L268 18 L282 100 Z" fill="#d9ff4a" />
-        </svg>
-
-        <div class="stack-card" aria-label="The four layers of a freelance stack">
-          <div class="stack-card-head">
-            <img src="/brand/logo-mark.png" alt="" width="92" height="96" />
-            <span>Freelance <span class="hl">Stack</span></span>
+      <article class="verdict" aria-labelledby="verdict-title">
+        <p class="verdict-from">From <a href="/articles/freshbooks-vs-honeybook/">FreshBooks vs HoneyBook</a></p>
+        <h2 id="verdict-title">Bookkeeper or booking system?</h2>
+        <div class="verdict-picks">
+          <div class="verdict-pick">
+            <h3>HoneyBook</h3>
+            <p>Proposals, contracts, deposits.</p>
+            <p class="verdict-cost">$348 <small>a year</small></p>
+            <p class="verdict-plan">Starter, billed yearly</p>
           </div>
-          <div class="stack-row"><span class="ico"><Icon name="contract" /></span><div><strong>Win the client</strong><small>Proposals &amp; contracts</small></div><span class="bar"><i style="width:82%"></i></span></div>
-          <div class="stack-row"><span class="ico"><Icon name="calendar" /></span><div><strong>Book the work</strong><small>Scheduling</small></div><span class="bar"><i style="width:68%"></i></span></div>
-          <div class="stack-row"><span class="ico"><Icon name="clock" /></span><div><strong>Track the hours</strong><small>Time tracking</small></div><span class="bar"><i style="width:72%"></i></span></div>
-          <div class="stack-row"><span class="ico"><Icon name="card" /></span><div><strong>Get paid</strong><small>Invoicing &amp; payments</small></div><span class="bar"><i style="width:70%"></i></span></div>
+          <div class="verdict-pick">
+            <h3>FreshBooks</h3>
+            <p>Hourly work, retainers, bookkeeping.</p>
+            <p class="verdict-cost">$276 <small>a year</small></p>
+            <p class="verdict-plan">Lite, up to 5 clients</p>
+          </div>
         </div>
-      </div>
+        <p class="verdict-catch"><strong>The catch:</strong> client six moves FreshBooks to $516 a year.</p>
+      </article>
     </div>
   </section>
 
-  <div class="marquee dark" aria-hidden="true">
-    <div class="marquee-track">
-      {[0, 1].map(() => marquee.map((m) => <span>{m}</span>))}
-    </div>
-  </div>
-
-  <!-- TOPICS BENTO -->
-  <section class="section" id="topics">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Four layers. One working business.</h2>
-        <p class="muted">Most freelancers need the same four jobs done. We compare the tools for each, so you pay only for what you use.</p>
+  <section class="section" aria-labelledby="guides-title">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="guides-title">Every guide, newest first</h2>
+        <p class="lead">Each compares tools side by side, with prices checked on the vendor’s own page.</p>
       </div>
-      <div class="bento">
-        <div class="tile ink wide tall">
-          <span class="num">01 / Get paid</span>
-          <span class="ico"><Icon name="invoice" /></span>
-          <h3>Invoicing that chases payments for you</h3>
-          <p>Recurring invoices for retainers, deposits for projects, reminders that go out on time, and fees that don't eat your margin.</p>
-          <span class="ring"></span>
-        </div>
-        <div class="tile volt">
-          <span class="num">02 / Win</span>
-          <span class="ico"><Icon name="contract" /></span>
-          <h3>Contracts &amp; CRM</h3>
-          <p>Proposals, e-signatures and client tracking.</p>
-        </div>
-        <div class="tile">
-          <span class="num">03 / Track</span>
-          <span class="ico"><Icon name="clock" /></span>
-          <h3>Time tracking</h3>
-          <p>See where your week actually goes.</p>
-        </div>
-        <div class="tile wide">
-          <span class="num">04 / Book</span>
-          <span class="ico"><Icon name="calendar" /></span>
-          <h3>Scheduling without the email ping-pong</h3>
-          <p>Let clients pick a slot that already fits your time zone and your calendar.</p>
-        </div>
-      </div>
+      {published.length === 0
+        ? <p class="lead">The first guides are being written. We publish only once the facts are checked.</p>
+        : <ol class="index">
+            {published.map((a) => (
+              <li>
+                <a href={`/articles/${a.id}/`}>
+                  <h3>{a.data.title}</h3>
+                  {a.data.compares && <span class="compares">{a.data.compares.join(', ')}</span>}
+                  <time datetime={(a.data.updatedDate ?? a.data.pubDate).toISOString().slice(0, 10)}>{fmt(a.data.updatedDate ?? a.data.pubDate)}</time>
+                </a>
+              </li>
+            ))}
+          </ol>}
+      {published.length > 0 && <p class="index-foot"><a class="btn btn--quiet" href="/articles/">See all guides</a></p>}
     </div>
   </section>
 
-  <!-- GUIDES -->
-  <section class="section dark">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>{published.length > 0 ? 'Latest guides' : 'Guides on the way'}</h2>
-        <p class="muted">{published.length > 0 ? 'Start with these.' : 'We publish a guide only after the facts are checked at the source and we have used the tools ourselves. These are next.'}</p>
+  <section class="section" id="topics" aria-labelledby="layers-title">
+    <div class="container layers-wrap">
+      <div class="head">
+        <h2 id="layers-title">Four layers. One working business.</h2>
+        <p class="lead">Most freelancers need the same four jobs done.</p>
       </div>
-      <div class="cards">
-        {guides.map((g) =>
-          g.href ? (
-            <a class="guide" href={g.href}>
-              <div class="top"><span class="status live">Guide</span><span class="go"><Icon name="arrow" /></span></div>
-              <h3>{g.title}</h3>
-              <p>{g.text}</p>
-            </a>
-          ) : (
-            <div class="guide">
-              <div class="top"><span class="status">In progress</span></div>
-              <h3>{g.title}</h3>
-              <p>{g.text}</p>
-            </div>
-          )
-        )}
-      </div>
-      {published.length > 0 && <p style="margin-top:1.6rem"><a class="btn line" href="/articles/">All guides</a></p>}
+      <ol class="layers">
+        {layers.map((l) => (
+          <li>
+            <h3>{l.name}</h3>
+            <p>{l.line}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
-  <!-- HOW WE CHOOSE -->
-  <section class="section" id="how">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>How we choose.</h2>
-        <p class="muted">Three rules every guide has to pass before it goes live.</p>
-      </div>
-      <div class="steps">
-        <div class="step"><h3>We say who should skip it</h3><p>Every pick names the people it's wrong for. A tool that suits everyone suits no one.</p></div>
-        <div class="step"><h3>We check facts at the source</h3><p>Prices and features come from the vendor's own page, with the date we checked them.</p></div>
-        <div class="step"><h3>We're open about money</h3><p>Some links pay us a commission. It never decides the ranking, and every link is labelled.</p></div>
-      </div>
-      <div class="facts">
-        <div class="fact"><b>4</b><span>tool categories covered</span></div>
-        <div class="fact"><b>0</b><span>paid placements</span></div>
-        <div class="fact"><b>100%</b><span>affiliate links disclosed</span></div>
-        <div class="fact"><b>1</b><span>question per guide: who is it for?</span></div>
-      </div>
+  <section class="section" id="how" aria-labelledby="how-title">
+    <div class="container">
+      <h2 id="how-title" class="how-title">How we choose.</h2>
+      <p class="statement">Every guide names who should skip the tool, checks prices on the vendor’s own page, and labels every paid link.</p>
+      <dl class="stats">
+        <div><dt>tool categories covered</dt><dd>4</dd></div>
+        <div><dt>paid placements</dt><dd>0</dd></div>
+        <div><dt>of affiliate links disclosed</dt><dd>100%</dd></div>
+      </dl>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section" style="padding-top:0">
-    <div class="wrap">
-      <div class="cta-box">
-        <h2>Stuck choosing a tool?</h2>
-        <p>Tell us what you're trying to pick. The most-asked comparisons become our next guides.</p>
-        <a class="btn" href="/contact/">Suggest a comparison <span class="arrow">→</span></a>
+  <section class="band" aria-labelledby="close-title">
+    <div class="container">
+      <h2 id="close-title">Stuck choosing a tool?</h2>
+      <div class="band-body">
+        <p class="lead">Tell us what you’re trying to pick. The most-asked comparisons become our next guides.</p>
+        <a class="btn btn--quiet" href="/contact/">Suggest a comparison</a>
       </div>
     </div>
   </section>

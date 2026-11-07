@@ -1,25 +1,29 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
-import Icon from '../../components/Icon.astro';
 import { getCollection } from 'astro:content';
 
 const articles = (await getCollection('articles', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 <Base title="Guides | Freelance Stack" description="Guides to choosing invoicing, contract, time-tracking and scheduling software as a freelancer.">
-  <PageHero label="Guides" title="Pick the right tool, once." lede="Plain-language guides to freelancer software. Each one says who a tool suits and who should skip it." />
-  <section class="section dark" style="padding-top:1rem">
-    <div class="wrap">
+  <PageHero title="Pick the right tool, once." lede="Plain-language guides to freelancer software. Each one says who a tool suits and who should skip it." />
+  <section class="page-body">
+    <div class="container">
       {articles.length === 0
-        ? <p class="muted">The first guides are being written. We publish only once the facts are checked and the tools have been used.</p>
-        : <div class="cards">{articles.map((a) => (
-            <a class="guide" href={`/articles/${a.id}/`}>
-              <div class="top"><span class="status live">Guide</span><span class="go"><Icon name="arrow" /></span></div>
-              <h3>{a.data.title}</h3>
-              <p>{a.data.description}</p>
-            </a>
-          ))}</div>}
+        ? <p class="lead">The first guides are being written. We publish only once the facts are checked and the tools have been used.</p>
+        : <ol class="index">
+            {articles.map((a) => (
+              <li>
+                <a href={`/articles/${a.id}/`}>
+                  <h2>{a.data.title}</h2>
+                  {a.data.compares && <span class="compares">{a.data.compares.join(', ')}</span>}
+                  <time datetime={(a.data.updatedDate ?? a.data.pubDate).toISOString().slice(0, 10)}>{fmt(a.data.updatedDate ?? a.data.pubDate)}</time>
+                </a>
+              </li>
+            ))}
+          </ol>}
     </div>
   </section>
 </Base>

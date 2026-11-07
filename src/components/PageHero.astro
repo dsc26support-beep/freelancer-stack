@@ -1,11 +1,12 @@
 ---
-interface Props { label: string; title: string; lede?: string; }
-const { label, title, lede } = Astro.props;
+interface Props { title: string; lede?: string; updated?: Date; }
+const { title, lede, updated } = Astro.props;
+const dateText = updated?.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
-<section class="page-hero dark">
-  <div class="wrap">
-    <span class="chip">{label}</span>
+<section class="page-hero">
+  <div class="container">
     <h1>{title}</h1>
-    {lede && <p class="lede">{lede}</p>}
+    {lede && <p class="lead">{lede}</p>}
+    {updated && <p class="byline">Updated <time datetime={updated.toISOString().slice(0, 10)}>{dateText}</time></p>}
   </div>
 </section>

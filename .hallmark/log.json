@@ -1,0 +1,35 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "site",
+  "shape": "Ecosystem Index",
+  "theme": "brand",
+  "genre": "modern-minimal",
+  "axes": "dark/geometric-sans/chromatic-lime",
+  "posture": "Restrained",
+  "hero": "Stage",
+  "nav": "edge-aligned bar",
+  "footer": "mast",
+  "imagery": "none",
+  "photos": [],
+  "entry": "none",
+  "fingerprint": "green-black paper, lime signal, Plus Jakarta Sans 800 over Inter",
+  "sections": [
+   "hero-stage-verdict",
+   "guide-index",
+   "four-layers",
+   "rule-statement-stats",
+   "closing-band",
+   "mast-footer"
+  ],
+  "signature": "the FreshBooks vs HoneyBook verdict, each tool's yearly cost set large",
+  "waived": [],
+  "reviews": {
+   "hero": "in-thread",
+   "finish": "in-thread"
+  },
+  "prompt": "/hallmark redesign ./src/app",
+  "date": "2026-11-07"
+ }
+]

@@ -2,6 +2,7 @@
 title: "Best free invoicing software for freelancers: Zoho Invoice vs Wave"
 description: "Two invoicing tools that are actually free, not free trials. What each free plan includes, where it stops, and when it's worth paying."
 pubDate: 2026-11-07
+compares: ["Zoho Invoice", "Wave"]
 draft: false
 ---
 
@@ -75,18 +76,18 @@ Free tools are the right call when you're starting out. Upgrade when one of thes
 
 <div class="picks">
 <div class="pick top">
-<span class="label">Best free for most</span>
 <h3>Zoho Invoice</h3>
+<p class="label">Best free for most</p>
 <div class="price">$0<small> forever · 500 invoices/year</small></div>
 <p>Automatic reminders, recurring invoices and a client portal, free. Works in most countries.</p>
-<a class="btn" href="aff:zoho">Get Zoho Invoice free →</a>
+<a class="btn" href="aff:zoho">Get Zoho Invoice free</a>
 </div>
 <div class="pick">
-<span class="label">Best free in US &amp; Canada</span>
 <h3>Wave</h3>
+<p class="label">Best free in US &amp; Canada</p>
 <div class="price">$0<small> · Pro $19/month</small></div>
 <p>Unlimited invoices and free basic bookkeeping. Card payments built in.</p>
-<a class="btn" href="aff:wave">Get Wave free →</a>
+<a class="btn" href="aff:wave">Get Wave free</a>
 </div>
 </div>
 

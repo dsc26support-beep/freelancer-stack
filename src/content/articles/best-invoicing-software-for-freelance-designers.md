@@ -2,6 +2,7 @@
 title: "Best invoicing software for freelance designers"
 description: "HoneyBook, FreshBooks, Wave and Zoho Invoice compared for how designers actually get paid: deposits, retainers, overseas clients and fees."
 pubDate: 2026-11-07
+compares: ["HoneyBook", "FreshBooks", "Zoho Invoice", "Wave"]
 draft: false
 ---
 
@@ -76,32 +77,32 @@ If you bill clients in other countries, check the small print. FreshBooks adds *
 
 <div class="picks">
 <div class="pick top">
-<span class="label">Best for most designers</span>
 <h3>HoneyBook</h3>
+<p class="label">Best for most designers</p>
 <div class="price">$29<small> /month, billed yearly</small></div>
 <p>Send the proposal, contract and deposit invoice together. Fewer awkward money emails, more signed jobs.</p>
-<a class="btn" href="aff:honeybook">Try HoneyBook free →</a>
+<a class="btn" href="aff:honeybook">Try HoneyBook free</a>
 </div>
 <div class="pick">
-<span class="label">Best for retainers</span>
 <h3>FreshBooks</h3>
+<p class="label">Best for retainers</p>
 <div class="price">$23<small> /month, up to 5 clients</small></div>
 <p>Recurring invoices, time tracking and books that are ready for tax time.</p>
-<a class="btn" href="aff:freshbooks">Try FreshBooks free →</a>
+<a class="btn" href="aff:freshbooks">Try FreshBooks free</a>
 </div>
 <div class="pick">
-<span class="label">Best free, most countries</span>
 <h3>Zoho Invoice</h3>
+<p class="label">Best free, most countries</p>
 <div class="price">$0<small> forever</small></div>
 <p>Recurring invoices, a client portal and automatic reminders at no cost. Up to 500 invoices a year.</p>
-<a class="btn" href="aff:zoho">Get Zoho Invoice free →</a>
+<a class="btn" href="aff:zoho">Get Zoho Invoice free</a>
 </div>
 <div class="pick">
-<span class="label">Best free, US &amp; Canada</span>
 <h3>Wave</h3>
+<p class="label">Best free, US &amp; Canada</p>
 <div class="price">$0<small> · Pro $19/month</small></div>
 <p>Unlimited invoices and basic bookkeeping free. Pay for Pro to get reminders and deposits.</p>
-<a class="btn" href="aff:wave">Get Wave free →</a>
+<a class="btn" href="aff:wave">Get Wave free</a>
 </div>
 </div>
 

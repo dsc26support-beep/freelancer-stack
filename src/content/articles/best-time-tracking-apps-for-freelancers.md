@@ -2,6 +2,7 @@
 title: "Best time-tracking apps for freelancers: Toggl Track vs Clockify vs Harvest"
 description: "Three popular time trackers compared on what freelancers actually pay: free plans, the cheapest way to bill from tracked hours, and the hidden limits."
 pubDate: 2026-11-07
+compares: ["Toggl Track", "Clockify", "Harvest"]
 draft: false
 ---
 
@@ -67,25 +68,25 @@ Harvest's pricing page says its paid plans have a base price, and that extra inv
 
 <div class="picks">
 <div class="pick top">
-<span class="label">Best free start</span>
 <h3>Toggl Track</h3>
+<p class="label">Best free start</p>
 <div class="price">$0<small> · Starter $9/month yearly</small></div>
 <p>Track time on web, phone and desktop, and turn a report into a PDF invoice for free. Pay for Starter when you want rates calculated for you.</p>
-<a class="btn" href="aff:toggl">Try Toggl Track free →</a>
+<a class="btn" href="aff:toggl">Try Toggl Track free</a>
 </div>
 <div class="pick">
-<span class="label">Cheapest for billing</span>
 <h3>Clockify</h3>
+<p class="label">Cheapest for billing</p>
 <div class="price">$5.49<small> /month, Standard, yearly</small></div>
 <p>Billable rates and invoicing from your tracked hours for the lowest yearly cost of the three. Free plan for tracking only.</p>
-<a class="btn" href="aff:clockify">Get Clockify free →</a>
+<a class="btn" href="aff:clockify">Get Clockify free</a>
 </div>
 <div class="pick">
-<span class="label">Two clients or fewer</span>
 <h3>Harvest</h3>
+<p class="label">Two clients or fewer</p>
 <div class="price">$0<small> · 1 user, 2 projects</small></div>
 <p>Time tracking, expenses and invoicing free, as long as you stay on two projects. Check the usage fees before upgrading.</p>
-<a class="btn" href="aff:harvest">Try Harvest free →</a>
+<a class="btn" href="aff:harvest">Try Harvest free</a>
 </div>
 </div>
 

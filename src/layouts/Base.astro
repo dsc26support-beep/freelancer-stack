@@ -1,8 +1,6 @@
 ---
 import '@fontsource-variable/inter';
 import '@fontsource-variable/plus-jakarta-sans';
-import '../styles/global.css';
-import Icon from '../components/Icon.astro';
 
 interface Props {
   title: string;
@@ -23,7 +21,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#050806" />
+    <meta name="theme-color" content="#1a201c" />
     <meta name="impact-site-verification" value="a63c63eb-50c0-4452-b52a-4f79f502ca90" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -33,33 +31,39 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     <link rel="canonical" href={new URL(path, Astro.site)} />
     <link rel="icon" href="/brand/favicon-64.png" type="image/png" sizes="64x64" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <style is:global>
+      @import "../styles/global.css";
+    </style>
   </head>
   <body>
+    <a class="skip" href="#main">Skip to content</a>
     <header class="site-header" id="top">
-      <div class="wrap">
+      <div class="container">
         <a class="brand" href="/" aria-label="Freelance Stack home">
-          <img class="brand-logo" src="/brand/logo-mark.png" alt="" width="92" height="96" />
-          <span>Freelance <span class="hl">Stack</span></span>
+          <img src="/brand/logo-mark.png" alt="" width="92" height="96" />
+          <span>Freelance Stack</span>
         </a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span></button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
         <nav class="site-nav" id="site-nav" aria-label="Main">
           {links.map((l) => <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>)}
-          <a class="btn" href="/contact/">Contact <Icon name="arrow-right" /></a>
+          <a class="btn btn--quiet" href="/contact/">Contact</a>
         </nav>
       </div>
     </header>
 
-    <main><slot /></main>
+    <main id="main"><slot /></main>
 
-    <footer class="site-footer dark">
-      <div class="wrap">
+    <footer class="site-footer">
+      <div class="container">
+        <p class="wordmark" aria-hidden="true">Freelance Stack</p>
+        <p class="closing">Work, track, get paid.</p>
         <div class="foot-grid">
           <div>
-            <a class="brand" href="/"><img class="brand-logo" src="/brand/logo-mark.png" alt="" width="92" height="96" /><span>Freelance <span class="hl">Stack</span></span></a>
-            <p class="muted" style="margin-top:1rem;max-width:26rem">Plain-spoken software picks for people who work for themselves. We say who each tool suits, and who should skip it.</p>
+            <p>Plain-spoken software picks for people who work for themselves. We say who each tool suits, and who should skip it.</p>
           </div>
           <div>
-            <h4>Explore</h4>
+            <h2>Explore</h2>
             <nav aria-label="Footer explore">
               <a href="/articles/">Guides</a>
               <a href="/about/">About</a>
@@ -67,18 +71,16 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
             </nav>
           </div>
           <div>
-            <h4>Trust</h4>
+            <h2>Trust</h2>
             <nav aria-label="Footer trust">
               <a href="/disclosure/">Affiliate disclosure</a>
               <a href="/privacy/">Privacy</a>
             </nav>
           </div>
         </div>
-        <div class="wordmark" aria-hidden="true">Freelance <span>Stack</span></div>
-        <p class="tagline" aria-hidden="true">Work <i></i> Track <i></i> Get paid</p>
         <div class="foot-bottom">
           <span>Some links are affiliate links. We may earn a commission at no extra cost to you.</span>
-          <a href="#top" style="text-decoration:none">Back to top ↑</a>
+          <a href="#top">Back to top</a>
         </div>
       </div>
     </footer>
@@ -89,12 +91,13 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
       toggle?.addEventListener('click', () => {
         const open = header?.classList.toggle('nav-open') ?? false;
         toggle.setAttribute('aria-expanded', String(open));
-        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        toggle.textContent = open ? 'Close' : 'Menu';
       });
       document.querySelectorAll('.site-nav a').forEach((a) =>
         a.addEventListener('click', () => {
           header?.classList.remove('nav-open');
           toggle?.setAttribute('aria-expanded', 'false');
+          if (toggle) toggle.textContent = 'Menu';
         })
       );
     </script>

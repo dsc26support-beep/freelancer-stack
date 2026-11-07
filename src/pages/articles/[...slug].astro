@@ -11,14 +11,13 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const updated = entry.data.updatedDate ?? entry.data.pubDate;
-const dateText = updated.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 <Base title={`${entry.data.title} | Freelance Stack`} description={entry.data.description}>
-  <PageHero label={`Guide · Updated ${dateText}`} title={entry.data.title} lede={entry.data.description} />
+  <PageHero title={entry.data.title} lede={entry.data.description} updated={updated} />
   <section class="page-body">
-    <div class="wrap">
+    <div class="container">
       <p class="disclosure">
-        <span>Some links below are affiliate links. We may earn a commission if you buy through them, at no extra cost to you. It never changes what we recommend. <a href="/disclosure/">How we earn</a>.</span>
+        Some links below are affiliate links. We may earn a commission if you buy through them, at no extra cost to you. It never changes what we recommend. <a href="/disclosure/">How we earn</a>.
       </p>
       <article class="prose"><Content /></article>
     </div>
