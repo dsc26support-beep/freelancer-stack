@@ -34,4 +34,19 @@ export const tools = {
     site: 'https://www.zoho.com/invoice/',
     affiliate: '',
   },
+  toggl: {
+    name: 'Toggl Track',
+    site: 'https://toggl.com/track/',
+    affiliate: '',
+  },
+  clockify: {
+    name: 'Clockify',
+    site: 'https://clockify.me/',
+    affiliate: '',
+  },
+  harvest: {
+    name: 'Harvest',
+    site: 'https://www.getharvest.com/',
+    affiliate: '',
+  },
 };
